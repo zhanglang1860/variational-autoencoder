@@ -13,7 +13,7 @@ class LatentAttention():
         self.n_samples = self.mnist.train.num_examples
 
         self.n_hidden = 500
-        self.n_z = 20
+        self.n_z = 64
         self.batchsize = 100
 
         self.images = tf.placeholder(tf.float32, [None, 784])
@@ -60,7 +60,7 @@ class LatentAttention():
         reshaped_vis = visualization.reshape(self.batchsize,28,28)
         ims("results/base.jpg",merge(reshaped_vis[:64],[8,8]))
         # train
-        saver = tf.train.Saver(max_to_keep=2)
+        saver = tf.train.Saver()#max_to_keep=2
         with tf.Session() as sess:
             sess.run(tf.initialize_all_variables())
             for epoch in range(10):
